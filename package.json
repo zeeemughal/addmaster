@@ -1,0 +1,24 @@
+{
+  "name": "solution-eng-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "npx jest",
+    "start-prod": "node -e 'require(\"./server\")()'",
+    "start": "npx fastify start server.js --watch --verbose-watch --ignore-watch='node_modules .git logs/error.log'"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^3.14.1",
+    "fastify-cli": "^2.13.0",
+    "fastify-static": "^4.0.0",
+    "handlebars": "^4.7.7",
+    "jest": "^27.2.5",
+    "point-of-view": "^4.14.0"
+  },
+  "engines": {
+    "node": "12.x"
+  }
+}

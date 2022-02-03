@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Import the webpage's stylesheet -->
+        <link rel="stylesheet" href="/style.css" />
+        <title>Write example</title>
+        <script>
+            function newCookies() {
+                document.cookie =
+                    "localCookie=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; Secure";
+
+                window.top.document.cookie =
+                    "topCookie=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; Secure";
+            }
+            newCookies();
+        </script>
+    </head>
+
+    <body id="body" class="wrapper">
+        Inside the Iframe
+    </body>
+</html>

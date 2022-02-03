@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Import the webpage's stylesheet -->
+        <link rel="stylesheet" href="/style.css" />
+        <title>Hello Frame Page: {{name}}</title>
+
+        <script>
+            document.write(
+                "<scri" +
+                    'pt src="{{thirdp}}/another-script.js"></scr' +
+                    "ipt>"
+            );
+        </script>
+    </head>
+    <body class="wrapper">
+		<h1>The iFrame Page</h1>
+		<p>
+			In this test we're checking your understanding of how the DOM parsing, performance and how the browser parses origins and may limit particular activity on them.
+		</p>
+		<p>
+			This page employs a number of non-performant and in some cases depreciated approaches to loading web content. You may be able to see a `[Violation]` in Chrome or a `parser-blocking`. A warning will note that `An unbalanced tree was written` in Firefox. Both will note an `Uncaught DOMException:`.
+		</p>
+		<p>
+			When making your changes do not change the `reply` in `server.js`. Do not change the `src` values, which intentionally are structured to use the `thirdp` handlebars variable.
+		</p>
+		<ul>
+			<li>Rewrite the script tag on this page to use more performant approach that does not trigger any warnings.
+			<li>Take the HTML contained in the `another-script.js` `newContent` function to display inside the `#header-div` below. Do not open this page to any cross-origin attacks while doing so.
+			<li>There is an Uncaught DOMException warning triggered by code in the iFrame. Remove that code and accomplish what it is trying to do without adding additional content to this HTML page in order to do so (but you may change another-script.js).
+		</ul>
+		<p>
+			You will have to alter another-script.js and move or alter code around all three HTML and JS files loaded as part of serving this page.
+		</p>
+        <div id="header-text"></div>
+        <iframe src="{{thirdp}}/iframe" id="iframe"></iframe>
+		<div class="instructions">
+			<p>Once this page is working and not showing any errors, you can progress to the <a href="/cookie.html">Cookie Page</a></p>
+		</div>
+    </body>
+</html>

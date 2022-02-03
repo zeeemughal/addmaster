@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <style>
+            /******************************************************************************
+            START Glitch hello-app default styles
+
+            The styles in this section do some minimal CSS resets, set default fonts and
+            colors, and handle the layout for our footer and "Remix on Glitch" button. If
+            you're new to CSS they may seem a little complicated, but you can scroll down
+            to this section's matching END comment to see page-specific styles.
+            ******************************************************************************/
+            /* Our default values set as CSS variables */
+            :root {
+                --color-bg: #bdc9ff;
+                --color-text-main: #000000;
+                --color-primary: #afece0;
+                --wrapper-height: 87vh;
+                --image-max-width: 300px;
+                --image-margin: 3rem;
+                --font-family: "HK Grotesk";
+                --font-family-header: "HK Grotesk";
+            }
+
+            /* Basic page style resets */
+            * {
+                box-sizing: border-box;
+            }
+            [hidden] {
+                display: none !important;
+            }
+
+            /* Import fonts */
+            @font-face {
+                font-family: HK Grotesk;
+                src: url("https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2FHKGrotesk-Regular.otf?v=1603136326027")
+                    format("opentype");
+            }
+            @font-face {
+                font-family: HK Grotesk;
+                font-weight: bold;
+                src: url("https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2FHKGrotesk-Bold.otf?v=1603136323437")
+                    format("opentype");
+            }
+
+            /* Our remix on glitch button */
+            .btn--remix {
+                font-family: HK Grotesk;
+                padding: 0.75rem 1rem;
+                font-size: 1.1rem;
+                line-height: 1rem;
+                font-weight: 500;
+                height: 2.75rem;
+                align-items: center;
+                cursor: pointer;
+                background: #ffffff;
+                border: 1px solid #000000;
+                box-sizing: border-box;
+                border-radius: 4px;
+                text-decoration: none;
+                color: #000;
+                white-space: nowrap;
+                margin-left: auto;
+            }
+            .btn--remix img {
+                margin-right: 0.5rem;
+            }
+            .btn--remix:hover {
+                background-color: #d0fff1;
+            }
+
+            /* Navigation grid */
+            .footer {
+                display: flex;
+                justify-content: space-between;
+                margin: 1rem auto 0;
+                padding: 1rem 0 0.75rem 0;
+                width: 100%;
+                flex-wrap: wrap;
+                border-top: 4px solid #fff;
+            }
+
+            .footer a:not(.btn--remix):link,
+            a:not(.btn--remix):visited {
+                font-family: HK Grotesk;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 1.1rem;
+                color: #000;
+                text-decoration: none;
+                border-style: none;
+            }
+            .footer a:hover {
+                background: var(--color-primary);
+            }
+
+            .footer .links {
+                padding: 0.5rem 1rem 1.5rem;
+                white-space: nowrap;
+            }
+
+            .divider {
+                padding: 0 1rem;
+            }
+            /******************************************************************************
+            END Glitch hello-app default styles
+            ******************************************************************************/
+
+            body {
+                font-family: HK Grotesk;
+                background-color: var(--color-bg);
+            }
+
+            /* Page structure */
+            .wrapper {
+                min-height: var(--wrapper-height);
+                display: grid;
+                place-items: center;
+                margin: 0 1rem;
+            }
+            .content {
+                display: flex;
+                flex-direction: column;
+                align-items: left;
+                justify-content: left;
+            }
+
+            p {
+                font-size: 1.25rem;
+            }
+
+            /* Title h1 style */
+            .title {
+                color: #2800ff;
+                font-family: HK Grotesk;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 100px;
+                line-height: 105%;
+                margin: 2rem 0 0;
+            }
+
+            /* Very light scaling for our illustration */
+            .illo-container {
+                display: flex;
+                justify-content: flex-end;
+            }
+            .illustration {
+                max-width: 100%;
+                max-height: 150px;
+                margin-top: 1rem;
+            }
+
+            /* Styles for our custom color form and its results */
+            .color-info {
+                margin-left: 5px;
+            }
+            .color-search {
+                margin-top: 3rem;
+            }
+            .color-form {
+                width: 90%;
+                max-width: 500px;
+                margin-left: 5px;
+            }
+            .color-form a:not(.btn--remix) {
+                font-weight: bold;
+                color: var(--color-text-main);
+                margin-top: 8px;
+            }
+            .color-form button {
+                margin-top: 8px;
+            }
+            .color-form button:hover {
+                cursor: pointer;
+                box-shadow: -8px 4px 20px #9be7d8;
+            }
+            form {
+                margin: 0.75rem 0;
+            }
+            button,
+            input {
+                font-family: inherit;
+                font-size: 100%;
+                background: #ffffff;
+                border: 1px solid #000000;
+                box-sizing: border-box;
+                border-radius: 4px;
+                padding: 0.5rem 1rem;
+            }
+            label {
+                color: #000000;
+                font-weight: bold;
+            }
+
+            /* Instructions */
+            .instructions {
+                margin: 1rem auto 0;
+            }
+            .instructions p {
+                font-size: 1rem;
+            }
+            h2 {
+                color: #2800ff;
+            }
+
+            p {
+                max-width: 600px;
+            }
+        </style>
+        <style>
+            .lorem-ipsum {
+                color: darkgray;
+            }
+            #show-variables {
+                font-size: 20px;
+            }
+            #main-instructions {
+                margin: 25px auto;
+                border-bottom: 3px solid black;
+                font-size: 1.25rem;
+            }
+            #column-container {
+                width: 100%;
+                height: 100%;
+                max-width: 1100px;
+                margin: 0 auto;
+            }
+            #show-variables {
+                height: 350px;
+            }
+            #sidebar-ad-container {
+                background-color: lightblue;
+                width: 330px;
+            }
+            main img,
+            main video {
+                max-width: 85%;
+                margin: 0 auto;
+                display: block;
+            }
+            /** Add additional CSS below this point **/
+        </style>
+        <title>Hello GPT</title>
+        <script
+            async
+            src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+        ></script>
+
+        <script>
+            window.googletag = window.googletag || { cmd: [] };
+            var networkCode = "701",
+                parentAdUnit = "wpni.business",
+                adUnitCode = "personal-finance",
+                adSlotID = "slug_inline_bb";
+            // Add additional code below.
+            var adUnitPath = "";
+        </script>
+    </head>
+    <body>
+        <div id="column-container">
+            <main>
+                <div id="main-instructions">
+                    <p>
+                        In this page you should assemble the code needed to show
+                        a basic ad with some setup. It is expected that you will
+                        refer to reference materials. Also, unlike other pages,
+                        it is expected that when you get the ad to load it will
+                        cause warnings or errors in the console. As long as the
+                        source is the ad or ad assets you should ignore those
+                        issues.
+                    </p>
+                    <p>
+                        The following values are being added into this page to
+                        allow you to make ad calls:
+                    </p>
+                    <ul>
+                        <li>Network Code: 701</li>
+                        <li>Parent ad unit code: "wpni.business"</li>
+                        <li>adUnitCode: "personal-finance"</li>
+                        <li>Ad Slot ID: "slug_inline_bb"</li>
+                    </ul>
+                    <p>
+                        Using these variables you can set up your ad request by
+                        using the
+                        <a
+                            href="https://developers.google.com/publisher-tag/reference"
+                            target="_blank"
+                            >`googletag` publisher tag</a
+                        >
+                        in order to display an ad in the slug_inline_bb div on
+                        this page. It is expected that you will search for
+                        additional documentation on how to do this process. In
+                        fact, your ability to find, understand and enact
+                        processes based on external documentation is one of the
+                        things we intend to test here.
+                    </p>
+                    <p>
+                        You should add key value targeting to the ad by setting
+                        custom targeting parameters for the key "test-ad" with
+                        the value "active". You'll know you have added it
+                        successfully when you can look in the network requests
+                        and see a request that starts with
+                        `https://securepubads.g.doubleclick.net/gampad/ads?` and
+                        contains the key and value.
+                    </p>
+                    <p>
+                        We also want to monitor the ad call in the console.
+                        Create a GAM event listener for the `slotRequested`
+                        event and log the slot object to the console. Make sure
+                        your script checks that the slot that's being logged is
+                        the specific slot you set up.
+                    </p>
+                    <p>
+                        Once you have the ad displaying you need to change the
+                        design of the page to be two columns, a wide column for
+                        the content in the `main` HTML element on the left of
+                        the screen and a smaller column of 350px width for the
+                        `aside` HTML element to go on the right of the screen.
+                        (See image below, it should look similar to that though
+                        it does not need to be pixel perfect.) There is a line
+                        in `ads-page.css` under which you can add additional CSS
+                        to, including overwriting existing styles. Here we are
+                        checking your understanding of CSS and HTML layouts and
+                        how to manipulate them.
+                    </p>
+                    <img src="end-layout.png" />
+                    <p>
+                        Once you have achieved this layout we want to fix the
+                        position of the ad in the right sidebar. We want to
+                        start the ad in one position and then trigger it to move
+                        when the user scrolls it to the top of the viewport (a
+                        vertical scroll down of 370px). You should need to use
+                        Javascript to accomplish this. You can see a video of
+                        what this should look like below. For this portion of
+                        the test we're checking your ability to use vanilla
+                        Javascript to accomplish the type of standard DOM
+                        manipulation tasks we'll frequently have to build or
+                        analyze.
+                    </p>
+                    <video controls>
+                        <source src="fixed-sidebar-ad.mp4" type="video/mp4" />
+
+                        Sorry, your browser doesn't support embedded videos.
+                    </video>
+                    <p>
+                        If you are running this page without a local server you
+                        can see both the above image and video in the `public`
+                        folder of this project.
+                    </p>
+                </div>
+                <div class="lorem-ipsum">
+                    <p>
+                        Pellentesque habitant morbi tristique senectus et netus
+                        et malesuada fames ac turpis egestas. Vestibulum tortor
+                        quam, feugiat vitae, ultricies eget, tempor sit amet,
+                        ante. Donec eu libero sit amet quam egestas semper.
+                        Aenean ultricies mi vitae est. Mauris placerat eleifend
+                        leo. Quisque sit amet est et sapien ullamcorper
+                        pharetra. Vestibulum erat wisi, condimentum sed, commodo
+                        vitae, ornare sit amet, wisi. Aenean fermentum, elit
+                        eget tincidunt condimentum, eros ipsum rutrum orci,
+                        sagittis tempus lacus enim ac dui. Donec non enim in
+                        turpis pulvinar facilisis. Ut felis. Praesent dapibus,
+                        neque id cursus faucibus, tortor neque egestas augue, eu
+                        vulputate magna eros eu erat. Aliquam erat volutpat. Nam
+                        dui mi, tincidunt quis, accumsan porttitor, facilisis
+                        luctus, metus
+                    </p>
+                    <p>
+                        Pellentesque habitant morbi tristique senectus et netus
+                        et malesuada fames ac turpis egestas. Vestibulum tortor
+                        quam, feugiat vitae, ultricies eget, tempor sit amet,
+                        ante. Donec eu libero sit amet quam egestas semper.
+                        Aenean ultricies mi vitae est. Mauris placerat eleifend
+                        leo. Quisque sit amet est et sapien ullamcorper
+                        pharetra. Vestibulum erat wisi, condimentum sed, commodo
+                        vitae, ornare sit amet, wisi. Aenean fermentum, elit
+                        eget tincidunt condimentum, eros ipsum rutrum orci,
+                        sagittis tempus lacus enim ac dui. Donec non enim in
+                        turpis pulvinar facilisis. Ut felis. Praesent dapibus,
+                        neque id cursus faucibus, tortor neque egestas augue, eu
+                        vulputate magna eros eu erat. Aliquam erat volutpat. Nam
+                        dui mi, tincidunt quis, accumsan porttitor, facilisis
+                        luctus, metus
+                    </p>
+                    <p>
+                        Pellentesque habitant morbi tristique senectus et netus
+                        et malesuada fames ac turpis egestas. Vestibulum tortor
+                        quam, feugiat vitae, ultricies eget, tempor sit amet,
+                        ante. Donec eu libero sit amet quam egestas semper.
+                        Aenean ultricies mi vitae est. Mauris placerat eleifend
+                        leo. Quisque sit amet est et sapien ullamcorper
+                        pharetra. Vestibulum erat wisi, condimentum sed, commodo
+                        vitae, ornare sit amet, wisi. Aenean fermentum, elit
+                        eget tincidunt condimentum, eros ipsum rutrum orci,
+                        sagittis tempus lacus enim ac dui. Donec non enim in
+                        turpis pulvinar facilisis. Ut felis. Praesent dapibus,
+                        neque id cursus faucibus, tortor neque egestas augue, eu
+                        vulputate magna eros eu erat. Aliquam erat volutpat. Nam
+                        dui mi, tincidunt quis, accumsan porttitor, facilisis
+                        luctus, metus
+                    </p>
+                    <p>
+                        Pellentesque habitant morbi tristique senectus et netus
+                        et malesuada fames ac turpis egestas. Vestibulum tortor
+                        quam, feugiat vitae, ultricies eget, tempor sit amet,
+                        ante. Donec eu libero sit amet quam egestas semper.
+                        Aenean ultricies mi vitae est. Mauris placerat eleifend
+                        leo. Quisque sit amet est et sapien ullamcorper
+                        pharetra. Vestibulum erat wisi, condimentum sed, commodo
+                        vitae, ornare sit amet, wisi. Aenean fermentum, elit
+                        eget tincidunt condimentum, eros ipsum rutrum orci,
+                        sagittis tempus lacus enim ac dui. Donec non enim in
+                        turpis pulvinar facilisis. Ut felis. Praesent dapibus,
+                        neque id cursus faucibus, tortor neque egestas augue, eu
+                        vulputate magna eros eu erat. Aliquam erat volutpat. Nam
+                        dui mi, tincidunt quis, accumsan porttitor, facilisis
+                        luctus, metus
+                    </p>
+                    <p>
+                        Pellentesque habitant morbi tristique senectus et netus
+                        et malesuada fames ac turpis egestas. Vestibulum tortor
+                        quam, feugiat vitae, ultricies eget, tempor sit amet,
+                        ante. Donec eu libero sit amet quam egestas semper.
+                        Aenean ultricies mi vitae est. Mauris placerat eleifend
+                        leo. Quisque sit amet est et sapien ullamcorper
+                        pharetra. Vestibulum erat wisi, condimentum sed, commodo
+                        vitae, ornare sit amet, wisi. Aenean fermentum, elit
+                        eget tincidunt condimentum, eros ipsum rutrum orci,
+                        sagittis tempus lacus enim ac dui. Donec non enim in
+                        turpis pulvinar facilisis. Ut felis. Praesent dapibus,
+                        neque id cursus faucibus, tortor neque egestas augue, eu
+                        vulputate magna eros eu erat. Aliquam erat volutpat. Nam
+                        dui mi, tincidunt quis, accumsan porttitor, facilisis
+                        luctus, metus
+                    </p>
+                    <p>
+                        Pellentesque habitant morbi tristique senectus et netus
+                        et malesuada fames ac turpis egestas. Vestibulum tortor
+                        quam, feugiat vitae, ultricies eget, tempor sit amet,
+                        ante. Donec eu libero sit amet quam egestas semper.
+                        Aenean ultricies mi vitae est. Mauris placerat eleifend
+                        leo. Quisque sit amet est et sapien ullamcorper
+                        pharetra. Vestibulum erat wisi, condimentum sed, commodo
+                        vitae, ornare sit amet, wisi. Aenean fermentum, elit
+                        eget tincidunt condimentum, eros ipsum rutrum orci,
+                        sagittis tempus lacus enim ac dui. Donec non enim in
+                        turpis pulvinar facilisis. Ut felis. Praesent dapibus,
+                        neque id cursus faucibus, tortor neque egestas augue, eu
+                        vulputate magna eros eu erat. Aliquam erat volutpat. Nam
+                        dui mi, tincidunt quis, accumsan porttitor, facilisis
+                        luctus, metus
+                    </p>
+                </div>
+            </main>
+            <aside class="sidebar">
+                <div id="show-variables">
+                    <ul>
+                        <li>Network Code: 701</li>
+                        <li>Parent ad unit code: wpni.business</li>
+                        <li>adUnitCode: personal-finance</li>
+                        <li>adId: slug_inline_bb</li>
+                    </ul>
+                </div>
+                <div id="sidebar-ad-container">
+                    <div
+                        id="slug_inline_bb"
+                        style="width: 300px; height: 250px"
+                    >
+                        <script></script>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        <script>
+            // The amount of space between the container div of your ad and the top of your website
+            const spaceFromTop = 370;
+        </script>
+    </body>
+</html>
